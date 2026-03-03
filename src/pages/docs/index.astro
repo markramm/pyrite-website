@@ -1,58 +1,97 @@
 ---
-import Base from "../../layouts/Base.astro";
+import { getCollection } from "astro:content";
+import DocsLayout from "../../layouts/DocsLayout.astro";
+
+function slugify(id: string) {
+  return id.replace(/\.md$/, "");
+}
+
+const allDocs = await getCollection("docs");
+const sorted = allDocs.sort((a, b) => a.data.order - b.data.order);
+
+const sections = [
+  {
+    key: "get-started",
+    label: "Get Started",
+    description: "Install Pyrite, create your first knowledge base, and connect to Claude.",
+    icon: "M13 10V3L4 14h7v7l9-11h-7z",
+  },
+  {
+    key: "concepts",
+    label: "Core Concepts",
+    description: "Understand how Pyrite works — the architecture, entry types, search, and MCP access control.",
+    icon: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253",
+  },
+  {
+    key: "reference",
+    label: "Reference",
+    description: "CLI commands, Web UI features, and API documentation.",
+    icon: "M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4",
+  },
+  {
+    key: "build",
+    label: "Build & Extend",
+    description: "Build extensions with custom entry types, MCP tools, and CLI commands.",
+    icon: "M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z",
+  },
+] as const;
 ---
 
-<Base title="Docs — Pyrite" description="Pyrite documentation and knowledge base">
-  <section class="px-6 py-20 max-w-4xl mx-auto text-center">
-    <h1 class="text-4xl font-bold mb-6">Documentation</h1>
-    <p class="text-text-secondary text-lg mb-10 max-w-2xl mx-auto">
-      Pyrite's documentation lives in its own knowledge base — dogfooding all the
-      way down. Browse the full KB on the demo site.
-    </p>
-    <a
-      href="https://demo.pyrite.wiki"
-      class="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-pyrite-500 text-surface font-semibold hover:bg-pyrite-400 transition-colors"
-    >
-      Browse the Pyrite KB
-    </a>
+<DocsLayout title="Documentation — Pyrite" description="Pyrite documentation — guides, concepts, and reference.">
+  <div class="max-w-3xl">
+    <header class="mb-12">
+      <h1 class="text-3xl font-bold mb-3">Documentation</h1>
+      <p class="text-text-secondary text-lg">
+        Everything you need to get started with Pyrite, understand how it works, and build on top of it.
+      </p>
+    </header>
 
-    <div class="mt-16 grid sm:grid-cols-2 gap-6 text-left">
-      <a
-        href="https://github.com/markramm/pyrite#quick-start"
-        class="block p-6 rounded-xl bg-surface-raised border border-white/5 hover:border-white/15 transition-colors"
-      >
-        <h3 class="font-semibold mb-2">Quick Start</h3>
-        <p class="text-text-secondary text-sm">
-          Install, create a KB, connect to Claude in 5 minutes.
-        </p>
-      </a>
-      <a
-        href="https://github.com/markramm/pyrite#mcp-server"
-        class="block p-6 rounded-xl bg-surface-raised border border-white/5 hover:border-white/15 transition-colors"
-      >
-        <h3 class="font-semibold mb-2">MCP Server</h3>
-        <p class="text-text-secondary text-sm">
-          Three-tier tools for read, write, and admin access.
-        </p>
-      </a>
-      <a
-        href="https://github.com/markramm/pyrite#custom-types"
-        class="block p-6 rounded-xl bg-surface-raised border border-white/5 hover:border-white/15 transition-colors"
-      >
-        <h3 class="font-semibold mb-2">Custom Types</h3>
-        <p class="text-text-secondary text-sm">
-          Define domain-specific entry types with schema validation.
-        </p>
-      </a>
-      <a
-        href="https://github.com/markramm/pyrite#plugin-protocol"
-        class="block p-6 rounded-xl bg-surface-raised border border-white/5 hover:border-white/15 transition-colors"
-      >
-        <h3 class="font-semibold mb-2">Plugin Protocol</h3>
-        <p class="text-text-secondary text-sm">
-          Extend Pyrite with custom entry types, MCP tools, and CLI commands.
-        </p>
-      </a>
+    <div class="space-y-6">
+      {sections.map(({ key, label, description, icon }) => {
+        const sectionDocs = sorted.filter((d) => d.data.section === key);
+        const firstDoc = sectionDocs[0];
+        return (
+          <div class="rounded-xl bg-surface-raised border border-white/5 p-6 hover:border-white/15 transition-colors">
+            <div class="flex items-start gap-4">
+              <div class="shrink-0 p-2 rounded-lg bg-pyrite-500/10">
+                <svg class="w-5 h-5 text-pyrite-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={icon} />
+                </svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <h2 class="text-lg font-semibold mb-1">
+                  {firstDoc ? (
+                    <a href={`/docs/${slugify(firstDoc.id)}`} class="hover:text-pyrite-400 transition-colors">
+                      {label}
+                    </a>
+                  ) : label}
+                </h2>
+                <p class="text-text-secondary text-sm mb-3">{description}</p>
+                <ul class="space-y-1">
+                  {sectionDocs.map((doc) => (
+                    <li>
+                      <a
+                        href={`/docs/${slugify(doc.id)}`}
+                        class="text-sm text-text-muted hover:text-pyrite-400 transition-colors"
+                      >
+                        {doc.data.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        );
+      })}
     </div>
-  </section>
-</Base>
+
+    <div class="mt-12 p-6 rounded-xl bg-surface-raised border border-white/5">
+      <p class="text-text-secondary text-sm">
+        Pyrite's own documentation is managed as a Pyrite knowledge base.
+        Browse the full KB on the <a href="https://demo.pyrite.wiki" class="text-pyrite-400 hover:underline">demo site</a>,
+        or explore the source in the <a href="https://github.com/markramm/pyrite/tree/main/kb" class="text-pyrite-400 hover:underline">kb/ directory</a>.
+      </p>
+    </div>
+  </div>
+</DocsLayout>

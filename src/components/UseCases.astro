@@ -1,0 +1,56 @@
+---
+const cases = [
+  {
+    title: "Software teams",
+    description:
+      "ADRs, component docs, backlog items, runbooks — all structured, validated, and searchable. Your AI pair programmer gets full project context through MCP.",
+    link: "/use-cases#software",
+    plugin: "software-kb",
+  },
+  {
+    title: "Research & investigations",
+    description:
+      "Track people, organizations, events, and relationships across sources. Timeline visualization and knowledge graph reveal hidden connections.",
+    link: "/use-cases#research",
+    plugin: "cascade",
+  },
+  {
+    title: "Personal knowledge",
+    description:
+      "Zettelkasten-style note-taking with maturity workflows. Capture fleeting thoughts, develop them into permanent notes, let AI help you find connections.",
+    link: "/use-cases#personal",
+    plugin: "zettelkasten",
+  },
+  {
+    title: "Team wikis",
+    description:
+      "Replace Notion or Confluence. Structured entries, wikilinks, collections, and a web UI your whole team can use. $6/month on a VPS, unlimited users.",
+    link: "/use-cases#teams",
+    plugin: null,
+  },
+];
+---
+
+<section class="px-6 py-20 max-w-6xl mx-auto">
+  <h2 class="text-3xl font-bold text-center mb-12">Built for</h2>
+  <div class="grid sm:grid-cols-2 gap-8">
+    {
+      cases.map((c) => (
+        <a
+          href={c.link}
+          class="block p-6 rounded-xl bg-surface-raised border border-white/5 hover:border-white/15 transition-colors"
+        >
+          <h3 class="text-lg font-semibold mb-2">{c.title}</h3>
+          <p class="text-text-secondary text-sm leading-relaxed mb-3">
+            {c.description}
+          </p>
+          {c.plugin && (
+            <span class="inline-block text-xs font-mono px-2 py-0.5 rounded bg-surface-overlay text-pyrite-400">
+              {c.plugin} extension
+            </span>
+          )}
+        </a>
+      ))
+    }
+  </div>
+</section>

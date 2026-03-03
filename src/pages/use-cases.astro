@@ -1,0 +1,123 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base
+  title="Use Cases — Pyrite"
+  description="How teams use Pyrite for software projects, research, personal knowledge, and team wikis"
+>
+  <section class="px-6 py-20 max-w-4xl mx-auto">
+    <h1 class="text-4xl font-bold mb-4">Use cases</h1>
+    <p class="text-text-secondary text-lg mb-16">
+      Pyrite's typed entries, plugin system, and AI integration adapt to
+      different knowledge domains. Here's how teams are using it.
+    </p>
+
+    <div class="space-y-20">
+      <!-- Software Teams -->
+      <div id="software">
+        <div class="flex items-center gap-3 mb-4">
+          <span
+            class="inline-block text-xs font-mono px-2 py-0.5 rounded bg-surface-overlay text-pyrite-400"
+            >software-kb</span
+          >
+          <h2 class="text-2xl font-bold">Software teams</h2>
+        </div>
+        <p class="text-text-secondary mb-6 leading-relaxed">
+          Architecture Decision Records, component documentation, prioritized
+          backlogs, coding standards, and runbooks — all as structured,
+          validated entries in git. Your AI pair programmer reads the project KB
+          through MCP and has full context on every decision, every component,
+          every backlog item.
+        </p>
+        <div class="bg-surface-raised rounded-xl border border-white/5 p-6 font-mono text-sm space-y-1">
+          <p class="text-text-muted"># Your AI pair programmer knows your architecture</p>
+          <p><span class="text-pyrite-400">$</span> pyrite sw adrs</p>
+          <p class="text-text-muted pl-4">16 Architecture Decision Records</p>
+          <p><span class="text-pyrite-400">$</span> pyrite sw components</p>
+          <p class="text-text-muted pl-4">24 documented services and modules</p>
+          <p><span class="text-pyrite-400">$</span> pyrite sw backlog --status planned</p>
+          <p class="text-text-muted pl-4">Prioritized, effort-estimated, dependency-mapped</p>
+        </div>
+        <p class="text-text-muted text-sm mt-4">
+          Pyrite itself uses this workflow — its own backlog, ADRs, and component docs
+          live in a Pyrite KB. Dogfooding all the way down.
+        </p>
+      </div>
+
+      <!-- Research & Investigations -->
+      <div id="research">
+        <div class="flex items-center gap-3 mb-4">
+          <span
+            class="inline-block text-xs font-mono px-2 py-0.5 rounded bg-surface-overlay text-pyrite-400"
+            >cascade</span
+          >
+          <h2 class="text-2xl font-bold">Research & investigations</h2>
+        </div>
+        <p class="text-text-secondary mb-6 leading-relaxed">
+          Track people, organizations, events, and relationships across
+          hundreds of sources. Timeline visualization shows when things happened.
+          The knowledge graph reveals connections between entities that aren't
+          obvious from any single document. Every claim links back to a source.
+        </p>
+        <div class="bg-surface-raised rounded-xl border border-white/5 p-6 font-mono text-sm space-y-1">
+          <p class="text-text-muted"># Structured investigation</p>
+          <p><span class="text-pyrite-400">$</span> pyrite create --type person --title "Jane Doe" \</p>
+          <p class="pl-6">--body "CFO at Acme Corp since 2023. Previously at Initech."</p>
+          <p><span class="text-pyrite-400">$</span> pyrite search "financial connections" --mode hybrid</p>
+          <p><span class="text-pyrite-400">$</span> pyrite timeline --from 2023-01 --to 2024-06</p>
+        </div>
+      </div>
+
+      <!-- Personal Knowledge -->
+      <div id="personal">
+        <div class="flex items-center gap-3 mb-4">
+          <span
+            class="inline-block text-xs font-mono px-2 py-0.5 rounded bg-surface-overlay text-pyrite-400"
+            >zettelkasten</span
+          >
+          <h2 class="text-2xl font-bold">Personal knowledge management</h2>
+        </div>
+        <p class="text-text-secondary mb-6 leading-relaxed">
+          Zettelkasten-style note-taking with a maturity workflow: fleeting
+          notes become literature notes become permanent notes. Wikilinks
+          connect ideas. Semantic search finds conceptually related notes you
+          forgot you wrote. AI helps surface connections and suggests links.
+        </p>
+        <div class="bg-surface-raised rounded-xl border border-white/5 p-6 font-mono text-sm space-y-1">
+          <p class="text-text-muted"># Capture, connect, develop</p>
+          <p><span class="text-pyrite-400">$</span> pyrite create --type zettel --title "Thinking in Systems" \</p>
+          <p class="pl-6">--body "Meadows argues that system behavior..." --tags reading</p>
+          <p><span class="text-pyrite-400">$</span> pyrite search "feedback loops" --mode semantic</p>
+          <p class="text-text-muted pl-4"># Finds related notes across all your reading</p>
+        </div>
+      </div>
+
+      <!-- Team Wikis -->
+      <div id="teams">
+        <h2 class="text-2xl font-bold mb-4">Team wikis</h2>
+        <p class="text-text-secondary mb-6 leading-relaxed">
+          Replace Notion or Confluence with something you own. Structured
+          entries with wikilinks, collections with kanban/table/gallery views,
+          a web UI your whole team can use, and AI features powered by
+          bring-your-own-key. Deploy on a $6/month VPS with Docker —
+          unlimited users, no per-seat pricing.
+        </p>
+        <div class="grid sm:grid-cols-3 gap-4">
+          <div class="bg-surface-raised rounded-lg border border-white/5 p-4 text-center">
+            <div class="text-pyrite-400 font-semibold">Notion Team</div>
+            <div class="text-2xl font-bold mt-1">$10<span class="text-sm text-text-muted font-normal">/user/mo</span></div>
+          </div>
+          <div class="bg-surface-raised rounded-lg border border-white/5 p-4 text-center">
+            <div class="text-pyrite-400 font-semibold">Confluence</div>
+            <div class="text-2xl font-bold mt-1">$6<span class="text-sm text-text-muted font-normal">/user/mo</span></div>
+          </div>
+          <div class="bg-surface-raised rounded-lg border border-pyrite-500/30 p-4 text-center">
+            <div class="text-pyrite-400 font-semibold">Pyrite</div>
+            <div class="text-2xl font-bold mt-1">$6<span class="text-sm text-text-muted font-normal">/mo total</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

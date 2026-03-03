@@ -1,0 +1,124 @@
+---
+import Base from "../layouts/Base.astro";
+
+const extensions = [
+  {
+    name: "software-kb",
+    purpose: "Software project management",
+    types: "ADRs, components, backlog items, standards, runbooks",
+    tools: "sw_adrs, sw_backlog, sw_new_adr, sw_components, sw_standards",
+  },
+  {
+    name: "zettelkasten",
+    purpose: "CEQRC maturity workflow",
+    types: "Notes with maturity progression (capture → elaborate → question → refine → connect)",
+    tools: "Maturity promotion, reading list management",
+  },
+  {
+    name: "encyclopedia",
+    purpose: "Articles with review workflow",
+    types: "Articles, reviews, community voting",
+    tools: "Article review, voting, quality scoring",
+  },
+  {
+    name: "cascade",
+    purpose: "Timeline research & investigations",
+    types: "Timeline events, actors, capture lanes",
+    tools: "Timeline tools, capture lane validation",
+  },
+  {
+    name: "social",
+    purpose: "Engagement tracking",
+    types: "Social interactions, engagement metrics",
+    tools: "Engagement tracking tools",
+  },
+  {
+    name: "task",
+    purpose: "Work coordination",
+    types: "Tasks with 7-state workflow, atomic claim, decomposition",
+    tools: "Task lifecycle, assignment, DAG queries",
+  },
+];
+---
+
+<Base
+  title="Plugins — Pyrite"
+  description="Six extensions ship with Pyrite. Build your own with the plugin protocol."
+>
+  <section class="px-6 py-20 max-w-4xl mx-auto">
+    <h1 class="text-4xl font-bold mb-4">Plugins</h1>
+    <p class="text-text-secondary text-lg mb-12">
+      Pyrite's plugin protocol lets extensions add custom entry types, MCP
+      tools, CLI commands, validators, lifecycle hooks, and relationship
+      semantics. Six extensions ship out of the box.
+    </p>
+
+    <div class="space-y-6">
+      {
+        extensions.map((ext) => (
+          <div class="bg-surface-raised rounded-xl border border-white/5 p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="font-mono text-pyrite-400 font-semibold">
+                {ext.name}
+              </span>
+              <span class="text-text-muted text-sm">— {ext.purpose}</span>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-4 text-sm">
+              <div>
+                <div class="text-text-muted mb-1">Entry types</div>
+                <div class="text-text-secondary">{ext.types}</div>
+              </div>
+              <div>
+                <div class="text-text-muted mb-1">MCP tools</div>
+                <div class="text-text-secondary">{ext.tools}</div>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-16">
+      <h2 class="text-2xl font-bold mb-4">Build your own</h2>
+      <p class="text-text-secondary mb-6">
+        The plugin protocol exposes 16 extension points. A minimal plugin is a
+        Python class with a <code class="text-text-primary">name</code> attribute
+        and one or more methods.
+      </p>
+
+      <div
+        class="bg-surface-raised rounded-xl border border-white/5 p-6 font-mono text-sm leading-relaxed"
+      >
+        <p class="text-text-muted"># my_plugin/__init__.py</p>
+        <p><span class="text-pyrite-400">class</span> <span class="text-text-primary">MyPlugin</span>:</p>
+        <p class="pl-4">name = <span class="text-emerald-400">"my-plugin"</span></p>
+        <p></p>
+        <p class="pl-4"><span class="text-pyrite-400">def</span> get_type_metadata(self):</p>
+        <p class="pl-8"><span class="text-pyrite-400">return</span> {"{"}</p>
+        <p class="pl-12"><span class="text-emerald-400">"recipe"</span>: {"{"}</p>
+        <p class="pl-16"><span class="text-emerald-400">"description"</span>: <span class="text-emerald-400">"A cooking recipe"</span>,</p>
+        <p class="pl-16"><span class="text-emerald-400">"fields"</span>: {"{"}</p>
+        <p class="pl-20"><span class="text-emerald-400">"prep_time"</span>: {"{"}<span class="text-emerald-400">"type"</span>: <span class="text-emerald-400">"number"</span>{"}"},</p>
+        <p class="pl-20"><span class="text-emerald-400">"cuisine"</span>: {"{"}<span class="text-emerald-400">"type"</span>: <span class="text-emerald-400">"select"</span>, ...{"}"},</p>
+        <p class="pl-16">{"}"},</p>
+        <p class="pl-12">{"}"},</p>
+        <p class="pl-8">{"}"}</p>
+      </div>
+
+      <div class="mt-6 flex gap-4">
+        <a
+          href="https://github.com/markramm/pyrite#plugin-protocol"
+          class="inline-flex items-center justify-center px-4 py-2 rounded-lg border border-white/20 text-sm font-semibold hover:border-white/40 transition-colors"
+        >
+          Plugin protocol docs
+        </a>
+        <a
+          href="https://github.com/markramm/pyrite/tree/main/extensions"
+          class="inline-flex items-center justify-center px-4 py-2 rounded-lg border border-white/20 text-sm font-semibold hover:border-white/40 transition-colors"
+        >
+          Extension source code
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

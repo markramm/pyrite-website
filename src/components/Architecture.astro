@@ -1,0 +1,63 @@
+---
+---
+
+<section class="px-6 py-20 max-w-4xl mx-auto">
+  <h2 class="text-3xl font-bold text-center mb-4">How it works</h2>
+  <p class="text-text-secondary text-center mb-12 max-w-2xl mx-auto">
+    Markdown files with YAML frontmatter in git are the source of truth. Pyrite
+    builds a fast search index on top and exposes everything through multiple
+    interfaces.
+  </p>
+
+  <div
+    class="bg-surface-raised rounded-xl border border-white/5 p-8 font-mono text-sm"
+  >
+    <div class="flex flex-col items-center gap-4">
+      <div class="text-text-secondary">Your files (git-versioned markdown)</div>
+      <div class="text-pyrite-400">|</div>
+      <div class="text-text-secondary">v</div>
+      <div class="border border-white/10 rounded-lg px-4 py-2 text-center">
+        <span class="text-pyrite-400">SQLite index</span>
+        <span class="text-text-muted"> (FTS5 + vector embeddings)</span>
+      </div>
+      <div class="text-pyrite-400">|</div>
+      <div class="text-text-secondary">v</div>
+      <div class="flex flex-wrap justify-center gap-3">
+        <div class="border border-white/10 rounded-lg px-3 py-1.5">
+          MCP Server
+        </div>
+        <div class="border border-white/10 rounded-lg px-3 py-1.5">CLI</div>
+        <div class="border border-white/10 rounded-lg px-3 py-1.5">
+          REST API
+        </div>
+        <div class="border border-white/10 rounded-lg px-3 py-1.5">Web UI</div>
+      </div>
+      <div class="text-pyrite-400">^</div>
+      <div class="text-text-secondary">Any AI connects here</div>
+    </div>
+  </div>
+
+  <div class="grid sm:grid-cols-3 gap-6 mt-10 text-sm">
+    <div class="text-center">
+      <div class="text-pyrite-400 font-semibold mb-1">Source of truth</div>
+      <div class="text-text-secondary">
+        Plain markdown files in a git repo. Read them in any editor. Diff, branch,
+        review.
+      </div>
+    </div>
+    <div class="text-center">
+      <div class="text-pyrite-400 font-semibold mb-1">Derived index</div>
+      <div class="text-text-secondary">
+        SQLite FTS5 + optional vector embeddings. Rebuild from files any time with
+        <code class="text-text-primary">pyrite index build</code>.
+      </div>
+    </div>
+    <div class="text-center">
+      <div class="text-pyrite-400 font-semibold mb-1">Multiple interfaces</div>
+      <div class="text-text-secondary">
+        CLI for automation, MCP for AI agents, REST API for apps, Web UI for
+        humans.
+      </div>
+    </div>
+  </div>
+</section>

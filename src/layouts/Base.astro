@@ -1,0 +1,62 @@
+---
+import "../assets/styles.css";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Knowledge-as-Code for humans and AI agents" } =
+  Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="bg-surface text-text-primary">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen flex flex-col antialiased">
+    <nav
+      class="border-b border-white/10 px-6 py-4 flex items-center justify-between max-w-6xl mx-auto w-full"
+    >
+      <a href="/" class="text-xl font-bold">
+        <span class="text-gradient">Py</span>rite
+      </a>
+      <div class="flex items-center gap-6 text-sm text-text-secondary">
+        <a href="/docs" class="hover:text-text-primary transition-colors"
+          >Docs</a
+        >
+        <a
+          href="https://demo.pyrite.wiki"
+          class="hover:text-text-primary transition-colors">Demo</a
+        >
+        <a
+          href="https://github.com/markramm/pyrite"
+          class="hover:text-text-primary transition-colors">GitHub</a
+        >
+        <a
+          href="https://pypi.org/project/pyrite/"
+          class="hover:text-text-primary transition-colors">PyPI</a
+        >
+      </div>
+    </nav>
+
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <footer
+      class="border-t border-white/10 px-6 py-8 text-center text-sm text-text-muted"
+    >
+      <p>MIT License. Built with Pyrite's own knowledge base.</p>
+    </footer>
+  </body>
+</html>

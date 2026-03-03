@@ -1,0 +1,59 @@
+---
+const features = [
+  {
+    title: "Typed entries with schema validation",
+    description:
+      "Not flat vector blobs. Define person, decision, event, component types with validated fields. Query structurally, not just by vibes.",
+    icon: "{}",
+  },
+  {
+    title: "Git-native storage",
+    description:
+      "Every change is a versioned commit. Branch, diff, review, rollback. Your knowledge has a full audit trail.",
+    icon: "git",
+  },
+  {
+    title: "MCP server with three-tier access",
+    description:
+      "Read/write/admin tiers. Give untrusted agents read-only. Give your own agents write. Keep admin for yourself.",
+    icon: "key",
+  },
+  {
+    title: "Semantic + structured search",
+    description:
+      "Find by meaning (vector embeddings) AND by type, tag, date range, or relationship. Both at once in hybrid mode.",
+    icon: "search",
+  },
+  {
+    title: "Plugin system",
+    description:
+      "Custom entry types, MCP tools, CLI commands, validators, lifecycle hooks, relationship semantics. Six extensions ship out of the box.",
+    icon: "plug",
+  },
+  {
+    title: "Zero running cost locally",
+    description:
+      "Markdown files + SQLite on your disk. No cloud dependency, no subscription, no vendor lock-in. Your data is plain text.",
+    icon: "disk",
+  },
+];
+---
+
+<section class="px-6 py-20 max-w-6xl mx-auto">
+  <h2 class="text-3xl font-bold text-center mb-12">
+    Why Pyrite instead of vectors-in-Postgres or Notion+AI?
+  </h2>
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {
+      features.map((f) => (
+        <div class="p-6 rounded-xl bg-surface-raised border border-white/5">
+          <div class="text-pyrite-400 font-mono text-sm mb-3">{f.icon}</div>
+          <h3 class="text-lg font-semibold mb-2">{f.title}</h3>
+          <p class="text-text-secondary text-sm leading-relaxed">
+            {f.description}
+          </p>
+        </div>
+      ))
+    }
+  </div>
+</section>

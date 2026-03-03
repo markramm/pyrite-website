@@ -1,0 +1,46 @@
+---
+---
+
+<section class="px-6 py-20 max-w-4xl mx-auto">
+  <h2 class="text-3xl font-bold text-center mb-4">Or install locally</h2>
+  <p class="text-text-secondary text-center mb-10">
+    pip install, create a KB, connect to Claude.
+  </p>
+
+  <div class="bg-surface-raised rounded-xl border border-white/5 p-6">
+    <div class="font-mono text-sm space-y-1">
+      <p class="text-text-muted"># Install</p>
+      <p>
+        <span class="text-pyrite-400">$</span> pip install "pyrite[all]"
+      </p>
+      <p></p>
+      <p class="text-text-muted"># Create a knowledge base</p>
+      <p>
+        <span class="text-pyrite-400">$</span> mkdir my-kb && cd my-kb &&
+        pyrite init --name my-brain
+      </p>
+      <p></p>
+      <p class="text-text-muted"># Add some knowledge</p>
+      <p>
+        <span class="text-pyrite-400">$</span> pyrite create --type person
+        --title "Sarah Chen" \
+      </p>
+      <p class="pl-6">
+        --body "Engineering lead. Considering move to consulting."
+      </p>
+      <p></p>
+      <p class="text-text-muted"># Search (keyword, semantic, or hybrid)</p>
+      <p>
+        <span class="text-pyrite-400">$</span> pyrite search "career transition"
+      </p>
+      <p></p>
+      <p class="text-text-muted"># Connect to Claude Desktop or Claude Code</p>
+      <p>
+        <span class="text-pyrite-400">$</span> pyrite mcp
+        <span class="text-text-muted"
+          >&nbsp;&nbsp;# starts the MCP server</span
+        >
+      </p>
+    </div>
+  </div>
+</section>

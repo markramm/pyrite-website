@@ -1,0 +1,58 @@
+---
+import Base from "../../layouts/Base.astro";
+---
+
+<Base title="Docs — Pyrite" description="Pyrite documentation and knowledge base">
+  <section class="px-6 py-20 max-w-4xl mx-auto text-center">
+    <h1 class="text-4xl font-bold mb-6">Documentation</h1>
+    <p class="text-text-secondary text-lg mb-10 max-w-2xl mx-auto">
+      Pyrite's documentation lives in its own knowledge base — dogfooding all the
+      way down. Browse the full KB on the demo site.
+    </p>
+    <a
+      href="https://demo.pyrite.wiki"
+      class="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-pyrite-500 text-surface font-semibold hover:bg-pyrite-400 transition-colors"
+    >
+      Browse the Pyrite KB
+    </a>
+
+    <div class="mt-16 grid sm:grid-cols-2 gap-6 text-left">
+      <a
+        href="https://github.com/markramm/pyrite#quick-start"
+        class="block p-6 rounded-xl bg-surface-raised border border-white/5 hover:border-white/15 transition-colors"
+      >
+        <h3 class="font-semibold mb-2">Quick Start</h3>
+        <p class="text-text-secondary text-sm">
+          Install, create a KB, connect to Claude in 5 minutes.
+        </p>
+      </a>
+      <a
+        href="https://github.com/markramm/pyrite#mcp-server"
+        class="block p-6 rounded-xl bg-surface-raised border border-white/5 hover:border-white/15 transition-colors"
+      >
+        <h3 class="font-semibold mb-2">MCP Server</h3>
+        <p class="text-text-secondary text-sm">
+          Three-tier tools for read, write, and admin access.
+        </p>
+      </a>
+      <a
+        href="https://github.com/markramm/pyrite#custom-types"
+        class="block p-6 rounded-xl bg-surface-raised border border-white/5 hover:border-white/15 transition-colors"
+      >
+        <h3 class="font-semibold mb-2">Custom Types</h3>
+        <p class="text-text-secondary text-sm">
+          Define domain-specific entry types with schema validation.
+        </p>
+      </a>
+      <a
+        href="https://github.com/markramm/pyrite#plugin-protocol"
+        class="block p-6 rounded-xl bg-surface-raised border border-white/5 hover:border-white/15 transition-colors"
+      >
+        <h3 class="font-semibold mb-2">Plugin Protocol</h3>
+        <p class="text-text-secondary text-sm">
+          Extend Pyrite with custom entry types, MCP tools, and CLI commands.
+        </p>
+      </a>
+    </div>
+  </section>
+</Base>

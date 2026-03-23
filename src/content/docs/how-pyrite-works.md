@@ -59,7 +59,7 @@ Multiple interfaces read from the same index:
 
 - **CLI** (`pyrite search`, `pyrite get`) — fast terminal access
 - **MCP Server** (`pyrite mcp`) — lets AI agents search, read, and write your KB
-- **REST API** (`pyrite serve`) — powers the web UI and external integrations
+- **REST API** (`pyrite-server`) — powers the web UI and external integrations
 - **Web UI** — SvelteKit app for browsing, editing, and visualization
 
 All write operations go through the same path: update the markdown file, then re-index. This means every interface sees the same data, and changes from one are immediately visible in the others.

@@ -10,11 +10,11 @@ This walkthrough takes you from zero to a working knowledge base connected to Cl
 ## Create a knowledge base
 
 ```bash
-mkdir my-brain && cd my-brain
-pyrite init --name my-brain
+pyrite init --template research --path my-brain
+cd my-brain
 ```
 
-This creates a `kb.yaml` file and an empty directory structure. Let's add some content.
+This creates a `kb.yaml` file, registers the KB, and sets up the directory structure. Let's add some content.
 
 ## Add entries
 
@@ -22,22 +22,22 @@ Create a few entries to work with:
 
 ```bash
 # A person
-pyrite create --type person --title "Sarah Chen" \
+pyrite create -k my-brain --type person --title "Sarah Chen" \
   --body "Engineering lead at Acme. Considering move to consulting." \
   --tags "team,engineering"
 
-# A decision
-pyrite create --type decision --title "Switch to async standups" \
+# A note
+pyrite create -k my-brain --type note --title "Switch to async standups" \
   --body "Decided 2026-03-01. Reduces meeting load by 3hrs/week." \
   --tags "process,meetings"
 
 # A note with links
-pyrite create --type note --title "Q1 Planning Notes" \
+pyrite create -k my-brain --type note --title "Q1 Planning Notes" \
   --body "Discussed headcount with [[sarah-chen]]. Key decision: [[switch-to-async-standups]]." \
   --tags "planning,q1"
 ```
 
-Each command creates a markdown file with YAML frontmatter. Look in the `notes/`, `people/`, and `decisions/` directories to see what was generated.
+Each command creates a markdown file with YAML frontmatter. Look in the `note/` and `person/` directories to see what was generated.
 
 ## Search
 
@@ -45,13 +45,13 @@ Now search across your entries:
 
 ```bash
 # Keyword search
-pyrite search "async standups"
+pyrite search "async standups" -k my-brain
 
 # Find entries by tag
-pyrite search "tag:engineering"
+pyrite search "tag:engineering" -k my-brain
 
 # Semantic search (if you installed pyrite[semantic])
-pyrite search "team changes" --mode=semantic
+pyrite search "team changes" -k my-brain --mode=semantic
 ```
 
 ## Explore connections
@@ -60,13 +60,10 @@ Pyrite tracks `[[wikilinks]]` automatically:
 
 ```bash
 # What links to Sarah?
-pyrite backlinks sarah-chen
+pyrite backlinks sarah-chen -k my-brain
 
 # Get the full entry
-pyrite get sarah-chen
-
-# See a timeline of recent changes
-pyrite timeline --limit=10
+pyrite get sarah-chen -k my-brain
 ```
 
 ## Connect to Claude
@@ -98,7 +95,7 @@ Claude will use Pyrite's MCP tools to search, read, and create entries in your k
 For a visual interface:
 
 ```bash
-pyrite serve
+pyrite-server
 # Visit http://localhost:8088
 ```
 
@@ -116,12 +113,11 @@ After these steps, your knowledge base directory looks like:
 ```
 my-brain/
   kb.yaml              # KB configuration and type definitions
-  notes/
+  note/
     q1-planning-notes.md
-  people/
-    sarah-chen.md
-  decisions/
     switch-to-async-standups.md
+  person/
+    sarah-chen.md
 ```
 
 Each file is plain markdown you can edit in any text editor. The YAML frontmatter stores structured fields (type, tags, links). Git tracks all changes.

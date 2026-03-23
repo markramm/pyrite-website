@@ -17,17 +17,19 @@ pip install "pyrite[semantic]" # sentence-transformers + sqlite-vec
 ## Create a knowledge base
 
 ```bash
-mkdir my-kb && cd my-kb
-pyrite init --name my-brain
+pyrite init --template research --path my-kb
+cd my-kb
 ```
+
+Templates available: `research`, `software`, `zettelkasten`, `empty`, and more.
 
 ## Add some entries
 
 ```bash
-pyrite create --type person --title "Sarah Chen" \
+pyrite create -k my-kb --type person --title "Sarah Chen" \
   --body "Engineering lead. Considering move to consulting." --tags "team,engineering"
 
-pyrite create --type decision --title "Switch to async standups" \
+pyrite create -k my-kb --type note --title "Switch to async standups" \
   --body "Decided 2026-03-01. Reduces meeting load by 3hrs/week." --tags "process"
 ```
 
@@ -35,13 +37,13 @@ pyrite create --type decision --title "Switch to async standups" \
 
 ```bash
 # Keyword search
-pyrite search "career transition"
+pyrite search "career transition" -k my-kb
 
 # Semantic search (finds conceptually related content)
-pyrite search "team decisions" --mode=semantic
+pyrite search "team decisions" -k my-kb --mode=semantic
 
 # Hybrid (both at once)
-pyrite search "team decisions" --mode=hybrid
+pyrite search "team decisions" -k my-kb --mode=hybrid
 ```
 
 ## Connect to Claude Desktop or Claude Code

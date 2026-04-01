@@ -8,10 +8,17 @@ section: get-started
 ## Install
 
 ```bash
-pip install pyrite             # Core
-pip install "pyrite[all]"      # Core + AI + semantic search + dev tools
-pip install "pyrite[ai]"       # OpenAI + Anthropic + Gemini SDKs
-pip install "pyrite[semantic]" # sentence-transformers + sqlite-vec
+git clone https://github.com/markramm/pyrite.git
+cd pyrite
+pip install ".[all]"           # Core + AI + semantic search + dev tools
+```
+
+Or install only the extras you need:
+
+```bash
+pip install ".[ai]"            # OpenAI + Anthropic + Gemini SDKs
+pip install ".[semantic]"      # sentence-transformers + sqlite-vec
+pip install .                  # Core only
 ```
 
 ## Create a knowledge base

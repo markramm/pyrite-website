@@ -4,14 +4,17 @@
 <section class="px-6 py-20 max-w-4xl mx-auto">
   <h2 class="text-3xl font-bold text-center mb-4">Or install locally</h2>
   <p class="text-text-secondary text-center mb-10">
-    pip install, create a KB, connect to Claude.
+    Clone the repo, install, create a KB, connect to Claude.
   </p>
 
   <div class="bg-surface-raised rounded-xl border border-white/5 p-6">
     <div class="font-mono text-sm space-y-1">
       <p class="text-text-muted"># Install</p>
       <p>
-        <span class="text-pyrite-400">$</span> pip install "pyrite[all]"
+        <span class="text-pyrite-400">$</span> git clone https://github.com/markramm/pyrite.git && cd pyrite
+      </p>
+      <p>
+        <span class="text-pyrite-400">$</span> pip install ".[all]"
       </p>
       <p></p>
       <p class="text-text-muted"># Create a knowledge base</p>

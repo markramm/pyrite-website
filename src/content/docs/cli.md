@@ -78,8 +78,10 @@ bash deploy/selfhost/setup.sh kb.example.com
 ## Install extras
 
 ```bash
-pip install pyrite             # Core
-pip install "pyrite[all]"      # Everything
-pip install "pyrite[ai]"       # LLM providers
-pip install "pyrite[semantic]" # Vector search
+git clone https://github.com/markramm/pyrite.git
+cd pyrite
+pip install .                  # Core
+pip install ".[all]"           # Everything
+pip install ".[ai]"            # LLM providers
+pip install ".[semantic]"      # Vector search
 ```
